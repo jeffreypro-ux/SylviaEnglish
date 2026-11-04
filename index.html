@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sylvia 英语口语复习站</title>
+<style>
+:root{
+  --purple:#5b5bd6; --purple-dark:#4343b8; --purple-light:#efeffc;
+  --ink:#26263a; --sub:#6b6b80; --line:#e8e8f2;
+  --bg:#f6f7fb; --card:#ffffff; --orange:#ff8a3d; --green:#2faf7a;
+  --shadow:0 2px 10px rgba(60,60,140,.07); --shadow-lg:0 10px 30px rgba(60,60,140,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+a{color:var(--purple);text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ===== 顶部导航 ===== */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:12px 16px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;color:var(--ink);margin-right:auto}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#6a6ae0,#8a5cf6);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px}
+.nav a.nl{padding:7px 14px;border-radius:99px;font-size:14px;color:var(--sub);font-weight:600}
+.nav a.nl.on,.nav a.nl:hover{background:var(--purple-light);color:var(--purple)}
+
+/* ===== 通用布局 ===== */
+main{max-width:960px;margin:0 auto;padding:26px 16px 70px}
+.hero{background:linear-gradient(120deg,#5b5bd6,#8a5cf6 55%,#b45cf0);color:#fff;border-radius:22px;padding:36px 30px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero h1{font-size:26px;margin-bottom:8px}
+.hero p{opacity:.92;font-size:14px;max-width:620px}
+.stats{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:10px 18px;font-size:13px}
+.stat b{font-size:20px;display:block}
+
+/* ===== 课程卡片 ===== */
+.sec-title{font-size:18px;font-weight:800;margin:30px 0 14px;display:flex;align-items:center;gap:8px}
+.sec-title::before{content:"";width:5px;height:18px;border-radius:3px;background:var(--purple)}
+.lcard{display:flex;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);transition:.2s;margin-bottom:14px;align-items:center}
+.lcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.lnum{flex:none;width:64px;height:64px;border-radius:16px;background:var(--purple-light);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800}
+.lcard h3{font-size:18px;margin-bottom:4px}
+.lcard .meta{font-size:13px;color:var(--sub);margin-bottom:6px}
+.lcard .sum{font-size:14px;color:var(--sub)}
+.tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;background:var(--purple-light);color:var(--purple);padding:2px 10px;border-radius:99px;font-weight:600}
+.lcard .go{margin-left:auto;flex:none;color:#c9c9dd;font-size:22px}
+
+/* ===== 课程详情 ===== */
+.backlink{display:inline-block;font-size:13px;color:var(--sub);margin-bottom:14px}
+.backlink:hover{color:var(--purple)}
+.lhead{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);margin-bottom:20px}
+.lhead h1{font-size:23px;margin-bottom:6px}
+.lhead .meta{font-size:13px;color:var(--sub)}
+.lhead .sum{margin-top:10px;font-size:14px;color:var(--sub);background:var(--bg);border-radius:12px;padding:12px 14px}
+.section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 26px;box-shadow:var(--shadow);margin-bottom:16px}
+.section h2{font-size:17px;padding-left:12px;border-left:5px solid var(--purple);margin-bottom:14px;line-height:1.4}
+.section.text p{font-size:15px}
+.plist{list-style:none}
+.plist li{padding:9px 0 9px 4px;border-bottom:1px dashed var(--line);font-size:15px}
+.plist li:last-child{border-bottom:none}
+.en{color:var(--purple);font-weight:700}
+.enwrap{display:inline}
+.say{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--purple-light);font-size:13px;margin:0 6px;vertical-align:-6px;transition:.15s}
+.say:hover{background:var(--purple);transform:scale(1.1)}
+.say:active{transform:scale(.9)}
+.say.big{width:38px;height:38px;font-size:17px;border-radius:12px;vertical-align:0}
+
+/* 对话 */
+.dlg{display:flex;flex-direction:column;gap:12px}
+.bubble{max-width:82%;padding:11px 15px;border-radius:16px;font-size:15px;position:relative}
+.bubble .who{display:block;font-size:12px;font-weight:700;margin-bottom:3px;opacity:.75}
+.bubble.left{align-self:flex-start;background:var(--purple-light);border-bottom-left-radius:4px}
+.bubble.right{align-self:flex-end;background:#fff0e6;border-bottom-right-radius:4px}
+
+/* 作业 */
+.homework{background:#fffaf0;border:1px solid #ffe1b0;border-radius:14px;padding:16px 18px;font-size:15px}
+
+/* ===== 生词页 ===== */
+.toolbar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.search{flex:1;min-width:200px;padding:11px 16px;border:1px solid var(--line);border-radius:12px;font-size:14px;font-family:inherit;outline:none;background:#fff}
+.search:focus{border-color:var(--purple)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.vcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);transition:.2s}
+.vcard:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.vtop{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vword{font-size:19px;font-weight:800;color:var(--ink)}
+.vphon{font-size:13px;color:var(--sub)}
+.vmean{font-size:14px;color:var(--sub);margin:6px 0 10px}
+.vex{border-top:1px dashed var(--line);padding-top:10px;font-size:13.5px}
+.vex .cn{color:var(--sub);display:block;margin-top:3px;font-size:13px}
+.vsec{margin:38px 0 0;padding-top:22px;border-top:2px dashed var(--line)}
+.vsec-note{font-size:13px;color:var(--sub);margin:-6px 0 14px}
+.vcard{position:relative}
+.vcard.adv{border-top:4px solid var(--orange)}
+.advflag{position:absolute;top:12px;right:12px;font-size:11px;background:#fff0e6;color:var(--orange);padding:1px 8px;border-radius:99px;font-weight:700}
+
+/* ===== 设置页 ===== */
+.setcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow)}
+.setrow{margin-bottom:22px}
+.setrow label{display:block;font-weight:700;font-size:14px;margin-bottom:8px}
+.setrow select,.setrow input[type=range]{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;font-size:14px;font-family:inherit;background:#fff}
+.btn{display:inline-block;background:var(--purple);color:#fff;padding:11px 22px;border-radius:12px;font-size:14px;font-weight:700;transition:.15s}
+.btn:hover{background:var(--purple-dark)}
+
+/* ===== 更新说明 ===== */
+.help{background:var(--card);border:1px dashed #c9c9ee;border-radius:18px;padding:24px 26px;font-size:14px;color:var(--sub)}
+.help h3{color:var(--ink);margin:14px 0 6px;font-size:15px}
+.help h3:first-child{margin-top:0}
+.help code{display:block;background:#f0f0fa;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:12.5px;overflow-x:auto;color:#43438a;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre}
+.help .mark-line{color:var(--orange);font-weight:700}
+
+footer{text-align:center;color:#a5a5bd;font-size:12.5px;padding:26px 16px 40px}
+.empty{text-align:center;color:var(--sub);padding:60px 0}
+@media(max-width:600px){
+  .hero{padding:26px 20px}.hero h1{font-size:21px}
+  .lcard{align-items:flex-start}.lnum{width:48px;height:48px;font-size:20px;border-radius:12px}
+  .bubble{max-width:92%}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="#/" target="_self"><span class="mark">S</span>Sylvia 英语复习站</a>
+    <a class="nl" href="#/" target="_self" data-nav="home">课程</a>
+    <a class="nl" href="#/vocabulary" target="_self" data-nav="vocab">生词本</a>
+    <a class="nl" href="#/settings" target="_self" data-nav="settings">声音设置</a>
+    <a class="nl" href="https://my.feishu.cn/drive/folder/Quq0fp2TLlTWuGdfNL8cagzSnSX?from=space_personal_filelist" target="_self">📁 课程回放</a>
+  </div>
+</header>
+<main id="app"></main>
+<footer>Sylvia 英语口语复习站 · 发音由浏览器内置语音引擎提供(免费、无需联网)<br>手机上用 Safari / Chrome 打开均可朗读</footer>
+
+<script>
+/* 课程数据:每节课一个对象,加新课粘贴在 ★★★ 标记上方即可(无需自己改,发给助手重写更方便) */
+const LESSONS = [
+  {
+    id: 1,
+    date: "2026-11-03",
+    title: "第 1 课:五感描述法 —— 把小事讲丰满",
+    subtitle: "Mike 老师 · 英语口语提升",
+    summary: "第一节课:先诊断问题(free talk 即兴对话弱、描述缺乏细节),讲解 8 节课规划;学习核心方法——用五感(视听嗅味触)+ 感受把图片描述成丰满的一段话;课堂演练电影片场照与咖啡拉花。⚠️ 本节课录音只保留到咖啡描述练习处,后半节课内容根据课堂脉络补充整理,以老师发的完整版为准。",
+    tags: ["五感描述法", "看图说话", "感官形容词", "free talk", "咖啡描述"],
+    sections: [
+      { h: "一、课前热身:万圣节周末", type: "list", items: [
+        "Sylvia 上周末(万圣节)去了香港,有一些节日活动。",
+        "没有 dress up(扮装 / cosplay),只是去感受氛围:<span class='en'>I just went there to enjoy the vibe.</span>",
+        "表达较简短——这正是本课要解决的问题:把小事讲得更丰满、更有趣。",
+      ]},
+
+      { h: "二、诊断与课程规划", type: "list", items: [
+        "Sylvia 目前最需要提升的两点:<b>free talk(即兴对话)</b> 和 <b>cannot describe more details(无法描述更深层的细节)</b>。",
+        "另一个小问题:缺乏副词——副词比较简单,背一下就好。",
+        "8 节课全部围绕这两点展开;第一课先学会<b>把一件小事讲丰满</b>——就像被问『周末去了哪』,不能一句话带过,要说得更深、更丰富、更有趣。",
+        "后面的课程会陆续展开:人物、社会等深度话题的描述。",
+      ]},
+
+      { h: "三、核心方法:五感描述法(Use Your Senses)", type: "list", items: [
+        "说英语要有<b>个人感官的输出</b>——用你看到的、听到的、闻到的、尝到的、摸到的去描述,再加整体感受。",
+        "常用结构:看起来 <span class='en'>looks + 形容词</span> / 听起来 <span class='en'>sounds + 形容词</span> / 闻起来 <span class='en'>smells + 形容词</span>。",
+        "不必五个感官全说:能从其中挑出<b>两三个</b>讲清楚,画面就丰满了。",
+        "课堂快问快答:bright ↔ dark、loud ↔ quiet、fresh ↔ stinky、soft ↔ hard、warm ↔ hot,这些反义词要成对记。",
+      ]},
+
+      { h: "四、五感词汇速记(课堂整理)", type: "list", items: [
+        "<b>视觉 sight</b>:<span class='en'>bright</span> 明亮的、<span class='en'>dark</span> 昏暗的、<span class='en'>beautiful</span> 好看的、<span class='en'>professional</span> 专业的。",
+        "<b>听觉 sound</b>:<span class='en'>quiet</span> 安静的、<span class='en'>loud</span> 吵闹的。",
+        "<b>嗅觉 smell</b>:<span class='en'>fresh</span> 清新的、<span class='en'>stinky</span> 臭的(<span class='en'>You smell so stinky, get out!</span> 臭死了,快出去!)、<span class='en'>strong</span> 浓烈的(咖啡香味直接用 strong,fragrant 太文绉绉,日常不用)。",
+        "<b>味觉 taste</b>:<span class='en'>sweet</span> 甜、<span class='en'>sour</span> 酸、<span class='en'>bitter</span> 苦、<span class='en'>spicy</span> 辣、<span class='en'>salty</span> 咸。",
+        "<b>触觉 touch</b>:<span class='en'>soft</span> 软的、<span class='en'>hard</span> 硬的、<span class='en'>warm</span> 温暖的、<span class='en'>hot</span> 烫的。",
+        "<b>感受 feeling</b>:<span class='en'>happy / relaxing / exciting / crazy / amazing</span>——感受说得最多,视听嗅味触说得少,正好补这块。",
+      ]},
+
+      { h: "五、演练 1:电影片场照(《星际穿越》导演诺兰)", type: "list", items: [
+        "第一步先说表面事实:<span class='en'>There are some people, such as the photographer, the director, the actor and the movie star. They are in the grass, and there is a car nearby the movie star.</span>(拍电影:<span class='en'>make a movie</span>)",
+        "光说事实很表面、没意思,大家都看得到——所以加上感官与个人感受。",
+        "升级示范:<span class='en'>The picture looks so bright, and people are smiling. They look so professional and happy.</span>(迈克老师带练版本)",
+        "完整版描述公式:事实陈述 + 看起来怎么样 + 感受收尾,至少三句。",
+      ]},
+
+      { h: "六、演练 2:咖啡描述(录音到此中断)", type: "list", items: [
+        "任务:把一杯拿铁说成一整段话,用五感 + 感受。",
+        "视觉:咖啡师在做拉花——<span class='en'>There is a flower picture in the coffee.</span>(拉花:latte art)",
+        "习惯与原因:<span class='en'>You know I like coffee and I drink it every day, because it can help me to refresh.</span>",
+        "嗅觉:香味浓烈——<span class='en'>The coffee smells so strong.</span>(不用 fragrant)",
+        "触觉:杯子是热的、拿在手里暖暖的——<span class='en'>When I hold the cup, it feels so warm.</span>",
+        "味觉:又甜又带点苦——<span class='en'>It tastes sweet and a little bitter.</span>(a little 放在苦前面,因为拿铁甜多苦少)",
+        "感受:给我更多精力——<span class='en'>It can give me more energy.</span>(录音在 Sylvia 说 <span class='en'>It can increase my…</span> 效率时中断)",
+      ]},
+
+      { h: "七、补充整理:咖啡描述完整范文(后半节课未录制,按课堂脉络补写)", type: "list", items: [
+        "<span class='en'>Look at this cup of latte. The barista is making the coffee, and there is a beautiful flower picture on it. It smells so strong — I like that. When I hold the cup, it feels so warm. It tastes sweet and a little bitter. You know I drink coffee every day, because it helps me to refresh and gives me more energy, so it increases my work efficiency.</span>",
+        "段落结构:<b>引入(看到什么)→ 嗅/触/味细节 → 个人习惯 → 感受 + 结果</b>。",
+        " speaking 提醒:主语是第三人称单数时动词要加 s——<span class='en'>The coffee smells...</span> 不是 smell;<span class='en'>It tastes...</span> 不是 taste。",
+      ]},
+
+      { h: "八、老师点评与建议", type: "list", items: [
+        "诊断:描述容易停留在表面陈述,导致自己也不想往下说——这是<b>方法问题,不是能力问题</b>。",
+        "五感法非常适合以后谈项目、即兴聊天:没话了也能凭感官扯出几句。",
+        "词汇量短板比较明显:很多常见形容词(酸的、刺鼻的、毛躁的)中文都想不全——日常要有意识积累<b>感官类形容词</b>。",
+        "输出时大胆说简单句,先用准 <span class='en'>looks / sounds / smells / tastes / feels</span> 这五个系动词结构。",
+      ]},
+
+      { h: "课后作业", type: "homework", text: "1) 每天挑一张照片或身边一件东西(早餐、地铁、工位…),用五感法说 3-5 句话,录下来自己听;2) 背熟本课五感词汇表(尤其 sour / stinky / bitter 这些生疏词);3) 把咖啡描述范文背熟,下节课脱稿复述;4) 下节课继续讲人物、社会类深度话题的描述。(注:后半节课录音缺失,作业按课堂脉络整理,以老师布置为准。)" },
+    ]
+  },
+// ★★★ 新课程粘贴在这一行的上方 ★★★
+];
+
+/* 生词数据:w 单词 p 音标 m 释义 e 例句 c 例句中文 */
+const WORDS = [
+  { w:"free talk", p:"/friː tɔːk/", m:"n. 即兴对话;自由交谈", e:"My free talk needs improvement.", c:"我的即兴对话需要提升。" },
+  { w:"describe", p:"/dɪˈskraɪb/", m:"v. 描述;形容", e:"Can you describe this picture?", c:"你能描述一下这张图吗?" },
+  { w:"detail", p:"/ˈdiːteɪl/", m:"n. 细节", e:"I cannot describe more details.", c:"我说不出更多细节。" },
+  { w:"sense", p:"/sens/", m:"n. 感官;感觉(the five senses 五感)", e:"Use your senses to describe things.", c:"用你的感官去描述事物。" },
+  { w:"sight", p:"/saɪt/", m:"n. 视觉;景象", e:"The sight of the sea makes me calm.", c:"看到大海让我平静。" },
+  { w:"fresh", p:"/freʃ/", m:"adj. 清新的;新鲜的", e:"The air in the mountains smells fresh.", c:"山里的空气闻起来很清新。" },
+  { w:"stinky", p:"/ˈstɪŋki/", m:"adj. 臭的(口语,语气重)", e:"You smell so stinky, get out!", c:"你臭死了,快出去!" },
+  { w:"fragrant", p:"/ˈfreɪɡrənt/", m:"adj. 芬芳的(较文雅,日常口语少用)", e:"The flowers are fragrant.", c:"这些花很芬芳。" },
+  { w:"bitter", p:"/ˈbɪtə(r)/", m:"adj. 苦的", e:"It tastes sweet and a little bitter.", c:"它甜甜的,带一点苦。" },
+  { w:"professional", p:"/prəˈfeʃənl/", m:"adj. 专业的", e:"They look so professional and happy.", c:"他们看起来既专业又开心。" },
+  { w:"photographer", p:"/fəˈtɒɡrəfə(r)/", m:"n. 摄影师", e:"There are some photographers on the set.", c:"片场有几位摄影师。" },
+  { w:"director", p:"/dəˈrektə(r)/", m:"n. 导演", e:"The director is making a movie.", c:"导演正在拍电影。" },
+  { w:"barista", p:"/bəˈriːstə/", m:"n. 咖啡师", e:"The barista is making the coffee.", c:"咖啡师正在做咖啡。" },
+  { w:"latte art", p:"/ˈlɑːteɪ ɑːt/", m:"n. 咖啡拉花", e:"There is a flower picture in the coffee — beautiful latte art.", c:"咖啡上有一朵花,拉花真漂亮。" },
+  { w:"refresh", p:"/rɪˈfreʃ/", m:"v. 提神;使恢复精神", e:"It helps me to refresh in the morning.", c:"它帮我早上提神。" },
+  { w:"efficiency", p:"/ɪˈfɪʃnsi/", m:"n. 效率", e:"Coffee increases my work efficiency.", c:"咖啡提升我的工作效率。" },
+  { w:"vibe", p:"/vaɪb/", m:"n. 氛围(口语,= atmosphere)", e:"I just went there to enjoy the vibe.", c:"我只是去感受一下氛围。" },
+  { w:"dress up", p:"/dres ʌp/", m:"phr. 扮装;盛装打扮(万圣节 cosplay)", e:"I didn't dress up for the party.", c:"我没有为派对扮装。" },
+];
+
+/* 常用口语副词:单独分区展示 */
+const ADVERBS = [
+  { w:"extremely", p:"/ɪkˈstriːmli/", m:"adv. 极其;非常(程度很强)", e:"The coffee is extremely hot.", c:"这咖啡极烫。" },
+  { w:"incredibly", p:"/ɪnˈkredəbli/", m:"adv. 难以置信地", e:"The view is incredibly beautiful.", c:"这景色美得难以置信。" },
+  { w:"slightly", p:"/ˈslaɪtli/", m:"adv. 稍微;有点", e:"It's slightly bitter.", c:"有点微苦。" },
+  { w:"pretty", p:"/ˈprɪti/", m:"adv. 相当;挺(口语,= fairly)", e:"The picture looks pretty bright.", c:"这张照片看着挺亮的。" },
+  { w:"quite", p:"/kwaɪt/", m:"adv. 相当;颇", e:"It's quite far from here.", c:"离这儿相当远。" },
+  { w:"fairly", p:"/ˈfeəli/", m:"adv. 还算;相当(程度中等)", e:"The price is fairly good.", c:"价格还算不错。" },
+  { w:"really", p:"/ˈriːəli/", m:"adv. 真的;很", e:"I really like this vibe.", c:"我真的很喜欢这种氛围。" },
+  { w:"almost", p:"/ˈɔːlməʊst/", m:"adv. 几乎;差不多", e:"I almost gave up.", c:"我几乎放弃了。" },
+  { w:"hardly", p:"/ˈhɑːdli/", m:"adv. 几乎不(表否定)", e:"I hardly watch TV.", c:"我几乎不看电视。" },
+  { w:"even", p:"/ˈiːvn/", m:"adv. 甚至;连", e:"Even a child can do it.", c:"连小孩都会做。" },
+  { w:"actually", p:"/ˈæktʃuəli/", m:"adv. 其实;实际上", e:"Actually, I like bitter coffee.", c:"其实,我喜欢苦咖啡。" },
+  { w:"basically", p:"/ˈbeɪsɪkli/", m:"adv. 基本上;说白了", e:"Basically, it's just sweet and bitter.", c:"说白了,就是又甜又苦。" },
+  { w:"literally", p:"/ˈlɪtərəli/", m:"adv. 毫不夸张地;真的", e:"I literally drink coffee every day.", c:"我真的一天不落地喝咖啡。" },
+  { w:"definitely", p:"/ˈdefɪnətli/", m:"adv. 肯定;一定", e:"I'll definitely come back.", c:"我一定还会再来。" },
+  { w:"probably", p:"/ˈprɒbəbli/", m:"adv. 很可能;大概", e:"It'll probably rain tomorrow.", c:"明天很可能会下雨。" },
+  { w:"suddenly", p:"/ˈsʌdənli/", m:"adv. 突然", e:"It suddenly started to rain.", c:"突然下起雨来。" },
+  { w:"recently", p:"/ˈriːsntli/", m:"adv. 最近", e:"I've been busy recently.", c:"我最近很忙。" },
+  { w:"eventually", p:"/ɪˈventʃuəli/", m:"adv. 最终;到头来", e:"Eventually, we reached the peak.", c:"最终,我们到达了山顶。" },
+  { w:"seriously", p:"/ˈsɪəriəsli/", m:"adv. 说真的;严肃地", e:"Seriously, you should try it.", c:"说真的,你该试试。" },
+  { w:"honestly", p:"/ˈɒnɪstli/", m:"adv. 老实说", e:"Honestly, I don't know.", c:"老实说,我不知道。" },
+  { w:"obviously", p:"/ˈɒbviəsli/", m:"adv. 显然;明显地", e:"Obviously, she is a professional.", c:"显然,她很专业。" },
+  { w:"anyway", p:"/ˈeniweɪ/", m:"adv. 反正;总之;不管怎么说", e:"Anyway, let's move on.", c:"总之,我们继续吧。" },
+  { w:"instead", p:"/ɪnˈsted/", m:"adv. 反而;代替", e:"Let's walk there instead.", c:"那我们走路去吧。" },
+  { w:"especially", p:"/ɪˈspeʃli/", m:"adv. 尤其;特别", e:"I love coffee, especially latte.", c:"我爱咖啡,尤其是拿铁。" },
+  { w:"exactly", p:"/ɪɡˈzæktli/", m:"adv. 正是;完全正确", e:"That's exactly what I mean.", c:"这正是我的意思。" },
+  { w:"absolutely", p:"/ˈæbsəluːtli/", m:"adv. 完全地;(表赞同)当然", e:"Absolutely! I agree.", c:"完全同意!" },
+  { w:"totally", p:"/ˈtəʊtəli/", m:"adv. 完全;彻底(口语)", e:"That's totally different.", c:"那完全不同。" },
+  { w:"still", p:"/stɪl/", m:"adv. 还是;仍然", e:"I still remember that day.", c:"我仍然记得那天。" },
+  { w:"yet", p:"/jet/", m:"adv. 还(没)(常用于否定/疑问)", e:"I haven't finished yet.", c:"我还没完成。" },
+  { w:"usually", p:"/ˈjuːʒuəli/", m:"adv. 通常;平常", e:"I usually drink one cup a day.", c:"我通常一天喝一杯。" },
+];
+
+/* ================= 工具函数 ================= */
+const app = document.getElementById("app");
+const FEMALE_RE = /female|zira|samantha|susan|karen|moira|tessa|serena|allison|ava|zoe|ting|mei-jia|sin-ji|google uk english female/i;
+let VOICES = [];
+
+function loadVoices(){
+  VOICES = speechSynthesis.getVoices().filter(v => v.lang.startsWith("en"));
+  if(!VOICES.length){ VOICES = speechSynthesis.getVoices(); }
+}
+if("speechSynthesis" in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function getVoice(){
+  const saved = localStorage.getItem("sylviaVoice");
+  return VOICES.find(v => v.name === saved) || VOICES.find(v => /google us english/i.test(v.name)) || VOICES[0] || null;
+}
+function getRate(){
+  return parseFloat(localStorage.getItem("sylviaRate") || "0.9");
+}
+function speak(text, big){
+  if(!("speechSynthesis" in window)){ alert("当前浏览器不支持语音朗读,请用 Chrome / Safari 打开"); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  const v = getVoice();
+  if(v){ u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
+  u.rate = getRate();
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+function sayBtn(text){
+  return '<button class="say" data-say="' + text + '" title="朗读">🔊</button>';
+}
+function decorateEn(html){
+  return html.replace(/<span class='en'>([\s\S]*?)<\/span>/g, function(m, t){
+    return sayBtn(t) + '<span class="en">' + t + '</span>';
+  });
+}
+
+/* ================= 页面渲染 ================= */
+function renderHome(){
+  const cards = LESSONS.slice().sort((a,b)=>b.id-a.id).map(l => {
+    const wordCount = l.id === 1 ? WORDS.length : 0;
+    return '<a class="lcard" href="#/lesson/' + l.id + '">' +
+      '<div class="lnum">' + l.id + '</div>' +
+      '<div><h3>' + l.title + '</h3>' +
+      '<div class="meta">' + l.date + ' · ' + l.subtitle + (wordCount ? ' · 配套生词 ' + wordCount + ' 个' : '') + '</div>' +
+      '<div class="sum">' + l.summary + '</div>' +
+      '<div class="tags">' + l.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div></div>' +
+      '<div class="go">›</div></a>';
+  }).join("");
+
+  app.innerHTML =
+    '<div class="hero">' +
+      '<h1>Sylvia 的英语口语复习站</h1>' +
+      '<p>把每节课的笔记、句型、情景对话和生词都收在这里,随时点开复习。点击任意 🔊 按钮即可听发音。</p>' +
+      '<div class="stats">' +
+        '<div class="stat"><b>' + LESSONS.length + '</b>节课</div>' +
+        '<div class="stat"><b>' + WORDS.length + '</b>个生词</div>' +
+        '<div class="stat"><b>' + ADVERBS.length + '</b>个口语副词</div>' +
+        '<div class="stat"><b>🔊</b>点击即发音</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="sec-title">课程列表</div>' + cards;
+}
+
+function renderLesson(id){
+  const l = LESSONS.find(x => x.id === id);
+  if(!l){ app.innerHTML = '<div class="empty">没有找到这节课 😅<br><br><a href="#/" target="_self">← 返回课程列表</a></div>'; return; }
+
+  const sections = l.sections.map(s => {
+    let body = "";
+    if(s.type === "text"){ body = '<div class="section text"><h2>' + s.h + '</h2><p>' + decorateEn(s.text) + '</p></div>'; }
+    else if(s.type === "list"){ body = '<div class="section"><h2>' + s.h + '</h2><ul class="plist">' + s.items.map(i => '<li>' + decorateEn(i) + '</li>').join('') + '</ul></div>'; }
+    else if(s.type === "dialog"){
+      const lines = s.lines.map(function(ln){
+        const who = ln[0], text = ln[1];
+        const side = /dara/i.test(who) ? 'right' : 'left';
+        return '<div class="bubble ' + side + '"><span class="who">' + who + '</span>' + decorateEn("<span class='en'>" + text + "</span>") + '</div>';
+      }).join('');
+      body = '<div class="section"><h2>' + s.h + '</h2><div class="dlg">' + lines + '</div></div>';
+    }
+    else if(s.type === "homework"){ body = '<div class="section"><h2>' + s.h + '</h2><div class="homework">' + decorateEn(s.text) + '</div></div>'; }
+    return body;
+  }).join("");
+
+  app.innerHTML =
+    '<a class="backlink" href="#/" target="_self">← 返回课程列表</a>' +
+    '<div class="lhead"><h1>' + l.title + '</h1><div class="meta">' + l.date + ' · ' + l.subtitle + '</div>' +
+    '<div class="tags" style="margin-top:10px">' + l.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>' +
+    '<div class="sum">' + l.summary + '</div></div>' +
+    sections +
+    '<div style="text-align:center;margin-top:26px"><a class="btn" href="#/vocabulary" target="_self">去本课生词本复习 →</a></div>';
+}
+
+function vcardHTML(w, adv){
+  return '<div class="vcard' + (adv ? ' adv' : '') + '">' +
+    (adv ? '<span class="advflag">口语副词</span>' : '') +
+    '<div class="vtop"><span class="vword">' + w.w + '</span>' + sayBtn(w.w).replace('class="say"','class="say big"') + '<span class="vphon">' + w.p + '</span></div>' +
+    '<div class="vmean">' + w.m + '</div>' +
+    '<div class="vex">' + sayBtn(w.e) + '<span class="en">' + w.e + '</span><span class="cn">' + w.c + '</span></div>' +
+  '</div>';
+}
+
+function renderVocab(){
+  app.innerHTML =
+    '<a class="backlink" href="#/" target="_self">← 返回课程列表</a>' +
+    '<div class="sec-title" style="margin-top:0">本课生词(' + WORDS.length + ' 个)</div>' +
+    '<div class="toolbar"><input class="search" id="vsearch" placeholder="输入英文或中文,过滤生词…"></div>' +
+    '<div class="vgrid" id="vgrid"></div>' +
+    '<div class="vsec">' +
+      '<div class="sec-title">常用口语副词(' + ADVERBS.length + ' 个)</div>' +
+      '<div class="vsec-note">口语里加上副词,描述更细致、语气更自然,单独背这一组就够日常用了。</div>' +
+      '<div class="vgrid" id="agrid"></div>' +
+    '</div>';
+
+  function draw(kw){
+    kw = (kw || "").trim().toLowerCase();
+    const match = function(w){ return !kw || w.w.toLowerCase().includes(kw) || w.m.toLowerCase().includes(kw) || w.c.includes(kw); };
+    const list1 = WORDS.filter(match);
+    const list2 = ADVERBS.filter(match);
+    document.getElementById("vgrid").innerHTML = list1.map(function(w){ return vcardHTML(w, false); }).join('') || '<div class="empty">没有匹配的生词</div>';
+    document.getElementById("agrid").innerHTML = list2.map(function(w){ return vcardHTML(w, true); }).join('') || '<div class="empty">没有匹配的副词</div>';
+  }
+  draw("");
+  document.getElementById("vsearch").addEventListener("input", function(e){ draw(e.target.value); });
+}
+
+function renderSettings(){
+  const options = VOICES.map(function(v){
+    const mark = FEMALE_RE.test(v.name) ? " 💃" : "";
+    return '<option value="' + v.name + '"' + (getVoice() && getVoice().name === v.name ? " selected" : "") + '>' + v.name + mark + ' (' + v.lang + ')</option>';
+  }).join('');
+  app.innerHTML =
+    '<a class="backlink" href="#/" target="_self">← 返回课程列表</a>' +
+    '<div class="sec-title" style="margin-top:0">声音设置</div>' +
+    '<div class="setcard">' +
+      '<div class="setrow"><label>选择发音声音(推荐女声,列表里 💃 为女声)</label>' +
+      '<select id="voiceSel"><option value="">自动(默认)</option>' + options + '</select></div>' +
+      '<div class="setrow"><label>语速:<span id="rateVal">' + getRate() + '</span></label>' +
+      '<input type="range" id="rateRange" min="0.5" max="1.3" step="0.05" value="' + getRate() + '"></div>' +
+      '<button class="btn" id="testBtn">🔊 测试发音</button>' +
+    '</div>';
+  document.getElementById("voiceSel").addEventListener("change", function(e){
+    localStorage.setItem("sylviaVoice", e.target.value);
+  });
+  document.getElementById("rateRange").addEventListener("input", function(e){
+    document.getElementById("rateVal").textContent = e.target.value;
+    localStorage.setItem("sylviaRate", e.target.value);
+  });
+  document.getElementById("testBtn").addEventListener("click", function(){
+    speak("Hi Sylvia, welcome back! Let's practice English together.");
+  });
+}
+
+/* ================= 路由 ================= */
+function route(){
+  const h = location.hash || "#/";
+  document.querySelectorAll(".nl").forEach(a => a.classList.remove("on"));
+  const m = h.match(/#\/lesson\/(\d+)/);
+  if(m){ renderLesson(parseInt(m[1], 10)); document.querySelector('[data-nav="home"]').classList.add("on"); }
+  else if(h.indexOf("#/vocab") === 0){ renderVocab(); document.querySelector('[data-nav="vocab"]').classList.add("on"); }
+  else if(h.indexOf("#/settings") === 0){ renderSettings(); document.querySelector('[data-nav="settings"]').classList.add("on"); }
+  else { renderHome(); document.querySelector('[data-nav="home"]').classList.add("on"); }
+  window.scrollTo(0, 0);
+}
+/* 全局点击:点 🔊 按钮朗读 */
+document.addEventListener("click", function(e){
+  var s = e.target.closest ? e.target.closest(".say") : null;
+  if(s){ e.preventDefault(); e.stopPropagation(); speak(s.getAttribute("data-say")); return; }
+  /* 站内导航:拦截默认行为,强制当前窗口内 hash 跳转,绝不新开窗口 */
+  var a = e.target.closest ? e.target.closest("a[href^='#/']") : null;
+  if(a){
+    e.preventDefault();
+    var target = a.getAttribute("href");
+    if(location.hash === target){ route(); } else { location.hash = target; }
+  }
+});
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
