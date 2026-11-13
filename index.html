@@ -154,6 +154,15 @@ main{max-width:960px;margin:0 auto;padding:26px 16px 70px}
 .streakbar{display:flex;gap:10px;align-items:center;background:#fff6ec;border:1px solid #ffe1b0;border-radius:14px;padding:12px 16px;font-size:14px;margin-bottom:16px}
 .streakbar .fire{font-size:20px}
 
+/* ===== 范文页 ===== */
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+.msec{font-size:15px;font-weight:800;color:var(--purple);margin:24px 0 12px;padding-left:12px;border-left:5px solid var(--purple)}
+.msec:first-of-type{margin-top:4px}
+.mhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mtitle{font-size:16px;font-weight:800}
+.men{font-size:16.5px;line-height:1.9;color:var(--ink)}
+.mcn{font-size:13px;color:var(--sub);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+
 footer{text-align:center;color:#a5a5bd;font-size:12.5px;padding:26px 16px 40px}
 .empty{text-align:center;color:var(--sub);padding:60px 0}
 @media(max-width:600px){
@@ -171,6 +180,7 @@ footer{text-align:center;color:#a5a5bd;font-size:12.5px;padding:26px 16px 40px}
     <a class="nl" href="#/" target="_self" data-nav="home">课程</a>
     <a class="nl" href="#/vocabulary" target="_self" data-nav="vocab">生词本</a>
     <a class="nl" href="#/train" target="_self" data-nav="train">训练</a>
+    <a class="nl" href="#/models" target="_self" data-nav="models">范文</a>
     <a class="nl" href="#/settings" target="_self" data-nav="settings">声音设置</a>
     <a class="nl" href="https://my.feishu.cn/drive/folder/Quq0fp2TLlTWuGdfNL8cagzSnSX?from=space_personal_filelist" target="_self">📁 课程回放</a>
   </div>
@@ -188,6 +198,10 @@ const LESSONS = [
     subtitle: "Mike 老师 · 英语口语提升",
     summary: "第一节课:先诊断问题(free talk 即兴对话弱、描述缺乏细节),讲解 8 节课规划;学习核心方法——用五感(视听嗅味触)+ 感受把图片描述成丰满的一段话;课堂演练电影片场照与咖啡拉花。⚠️ 本节课录音只保留到咖啡描述练习处,后半节课内容根据课堂脉络补充整理,以老师发的完整版为准。",
     tags: ["五感描述法", "看图说话", "感官形容词", "free talk", "咖啡描述"],
+    models: [
+      { t: "咖啡描述 · 完整范文", cn: "记忆线索:看到拉花 → 闻到 strong → 捧着 warm → 尝到 sweet and a little bitter → 每天的习惯 → refresh / energy / efficiency 收尾",
+        en: "Look at this cup of latte. The barista is making the coffee, and there is a beautiful flower picture on it. It smells so strong — I like that. When I hold the cup, it feels so warm. It tastes sweet and a little bitter. You know I drink coffee every day, because it helps me to refresh and gives me more energy, so it increases my work efficiency." },
+    ],
     sections: [
       { h: "一、课前热身:万圣节周末", type: "list", items: [
         "Sylvia 上周末(万圣节)去了香港,有一些节日活动。",
@@ -235,17 +249,14 @@ const LESSONS = [
         "感受:给我更多精力——<span class='en'>It can give me more energy.</span>(录音在 Sylvia 说 <span class='en'>It can increase my…</span> 效率时中断)",
       ]},
 
-      { h: "七、补充整理:咖啡描述完整范文(后半节课未录制,按课堂脉络补写)", type: "list", items: [
-        "<span class='en'>Look at this cup of latte. The barista is making the coffee, and there is a beautiful flower picture on it. It smells so strong — I like that. When I hold the cup, it feels so warm. It tastes sweet and a little bitter. You know I drink coffee every day, because it helps me to refresh and gives me more energy, so it increases my work efficiency.</span>",
-        "段落结构:<b>引入(看到什么)→ 嗅/触/味细节 → 个人习惯 → 感受 + 结果</b>。",
-        " speaking 提醒:主语是第三人称单数时动词要加 s——<span class='en'>The coffee smells...</span> 不是 smell;<span class='en'>It tastes...</span> 不是 taste。",
-      ]},
+      
 
       { h: "八、老师点评与建议", type: "list", items: [
         "诊断:描述容易停留在表面陈述,导致自己也不想往下说——这是<b>方法问题,不是能力问题</b>。",
         "五感法非常适合以后谈项目、即兴聊天:没话了也能凭感官扯出几句。",
         "词汇量短板比较明显:很多常见形容词(酸的、刺鼻的、毛躁的)中文都想不全——日常要有意识积累<b>感官类形容词</b>。",
         "输出时大胆说简单句,先用准 <span class='en'>looks / sounds / smells / tastes / feels</span> 这五个系动词结构。",
+        "语法提醒：主语是第三人称单数时动词要加 s——<span class='en'>The coffee smells...</span> 不是 smell;<span class='en'>It tastes...</span> 不是 taste。",
       ]},
 
       { h: "课后作业", type: "homework", text: "1) 每天挑一张照片或身边一件东西(早餐、地铁、工位…),用五感法说 3-5 句话,录下来自己听;2) 背熟本课五感词汇表(尤其 sour / stinky / bitter 这些生疏词);3) 把咖啡描述范文背熟,下节课脱稿复述;4) 下节课继续讲人物、社会类深度话题的描述。(注:后半节课录音缺失,作业按课堂脉络整理,以老师布置为准。)" },
@@ -258,6 +269,15 @@ const LESSONS = [
     subtitle: "Mike 老师 · 英语口语提升",
     summary: "课前聊了面试与跳槽想法;计时复习上节咖啡看图说话(60 秒完整版 → 30 秒减法版 → 15 秒精华版,练语块、换顺序、结论收尾);核心学习偏好类话题的四步表达法(观点 → mainly because 理由 → 细节对比 → 让步收尾),反复实战综艺、热闹的地方、空闲旅行、广告与偏好四个话题;最后 10 分钟跟读训练语块连读和 -ly 副词的语调。",
     tags: ["偏好表达", "mainly because", "prefer A to B", "让步句", "语块训练", "语调"],
+    models: [
+      { t: "咖啡描述 · 30 秒版",
+        en: "Look at the picture, there is the coffee and there is a beautiful flower picture on it. When I drink the coffee, I think it's so sweet and it can help me to refresh and give me more energy. Do you like drink the coffee?" },
+      { t: "咖啡描述 · 15 秒版",
+        en: "Well, I like the coffee very much and this picture is a cup of coffee. You know, when I drink the coffee, I feel it can give me more energy. You can try the coffee and it tastes so sweet, a little bit." },
+      { t: "空闲时间安排 · 课堂输出(润色)",
+        cn: "对应第 2 课「四步法」:观点 → Honestly 给理由 → but 让步收尾",
+        en: "Well, I prefer to travel in my free time. Honestly, it helps me feel relaxed and I can make new friends. Sometimes I can learn about other cultures. But I need to work, and travel needs money, so I have to work hard to make more money." },
+    ],
     sections: [
       { h: "一、课前热身:面试与三年职场", type: "list", items: [
         "Sylvia 最近去面试了,但在现在的公司待了三年(最长的任职),<b>并不急着跳槽</b>,只是想了解外面的世界。",
@@ -269,9 +289,11 @@ const LESSONS = [
         "<b>60 秒版</b>:上节内容基本全覆盖——拉花、闻起来 strong、喝起来 sweet and a little bitter、每天喝的提神习惯、喜欢的品牌(瑞幸:<span class='en'>Lucky Coffee, it's not expensive</span>)。",
         "<b>30 秒版(做减法)</b>:拆成三部分规划时间,20 秒开始收尾;只用<b>简单句</b>,不要从句;目标是不卡顿、有节奏,练<b>语块(chunk)</b>——老外说话是一块一块蹦,不是一个词一个词蹦。",
         "升级要求:开头用 <span class='en'>when / if</span> 造一个从句增加层次;再加 <span class='en'>it makes me feel...</span> 表达感受(万能句,要经常用)。",
-        "Sylvia 30 秒版:<span class='en'>Look at the picture, there is the coffee and there is a beautiful flower picture on it. When I drink the coffee, I think it's so sweet and it can help me to refresh and give me more energy. Do you like drink the coffee?</span>",
+        "Sylvia 的 30 秒版全文见顶部「范文」页。",
+        
         "<b>15 秒版(精华)</b>:<b>换顺序</b>——可以先说观点再说图;最后一句是<b>结论</b>,要放慢、语调下沉强调,像中文的『总而言之』;老外常说的 <span class='en'>That's what I'm talking about.</span> 就是这种收尾强调。",
-        "Sylvia 15 秒版:<span class='en'>Well, I like the coffee very much and this picture is a cup of coffee. You know, when I drink the coffee, I feel it can give me more energy. You can try the coffee and it tastes so sweet, a little bit.</span>",
+        "Sylvia 的 15 秒版全文见顶部「范文」页。",
+        
         "自查:计时器看着讲会过早收尾,不看着又不知道讲到哪——说明还在『想到啥说啥』阶段,需要继续堆语料。",
       ]},
 
@@ -701,6 +723,33 @@ function renderTrain(){
   drawCard();
 }
 
+function renderModels(){
+  let html =
+    '<a class="backlink" href="#/" target="_self">← 返回课程列表</a>' +
+    '<div class="sec-title" style="margin-top:0">范文朗读</div>' +
+    '<div style="font-size:13.5px;color:var(--sub);margin:-6px 0 16px">点 🔊 整段朗读,跟着做影子跟读;全部按课程顺序排列。</div>';
+  let total = 0;
+  LESSONS.forEach(function(l){ total += (l.models ? l.models.length : 0); });
+  let count = 0;
+  LESSONS.forEach(function(l){
+    if(!l.models || !l.models.length){ return; }
+    const idx = l.title.indexOf('：');
+    const shortT = idx > 0 ? l.title.slice(0, idx) : l.title;
+    html += '<div class="msec">' + shortT + ' · ' + l.date + '</div>';
+    l.models.forEach(function(m){
+      count++;
+      html += '<div class="mcard">' +
+        '<div class="mhead"><span class="mtitle">' + count + '. ' + m.t + '</span>' +
+        sayBtn(m.en).replace('class="say"', 'class="say big"') + '</div>' +
+        '<div class="men">' + m.en + '</div>' +
+        (m.cn ? '<div class="mcn">💡 ' + m.cn + '</div>' : '') +
+      '</div>';
+    });
+  });
+  html += '<div style="text-align:center;color:var(--sub);font-size:13px;margin-top:8px">共 ' + count + ' 篇 · 新课文会随课程自动追加到这里</div>';
+  app.innerHTML = html;
+}
+
 function renderSettings(){
   const options = VOICES.map(function(v){
     const mark = FEMALE_RE.test(v.name) ? " 💃" : "";
@@ -735,6 +784,7 @@ function route(){
   const m = h.match(/#\/lesson\/(\d+)/);
   if(m){ renderLesson(parseInt(m[1], 10)); document.querySelector('[data-nav="home"]').classList.add("on"); }
   else if(h.indexOf("#/train") === 0){ renderTrain(); document.querySelector('[data-nav="train"]').classList.add("on"); }
+  else if(h.indexOf("#/models") === 0){ renderModels(); document.querySelector('[data-nav="models"]').classList.add("on"); }
   else if(h.indexOf("#/vocab") === 0){ renderVocab(); document.querySelector('[data-nav="vocab"]').classList.add("on"); }
   else if(h.indexOf("#/settings") === 0){ renderSettings(); document.querySelector('[data-nav="settings"]').classList.add("on"); }
   else { renderHome(); document.querySelector('[data-nav="home"]').classList.add("on"); }
