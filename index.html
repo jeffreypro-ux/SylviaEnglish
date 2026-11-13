@@ -111,6 +111,49 @@ main{max-width:960px;margin:0 auto;padding:26px 16px 70px}
 .help code{display:block;background:#f0f0fa;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:12.5px;overflow-x:auto;color:#43438a;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre}
 .help .mark-line{color:var(--orange);font-weight:700}
 
+/* ===== 训练室 ===== */
+.trngrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.trngrid{grid-template-columns:1fr}}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+.tcard h3{font-size:16px;margin-bottom:14px}
+.topicbox{background:var(--purple-light);border-radius:14px;padding:16px 18px;font-size:15.5px;font-weight:700;min-height:60px;display:flex;align-items:center;gap:10px}
+.typetag{flex:none;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px}
+.typetag.desc{background:#e6f4ec;color:var(--green)}
+.typetag.pref{background:#fff0e6;color:var(--orange)}
+.chiprow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0;font-size:13px;color:var(--sub)}
+.chip{padding:7px 15px;border-radius:99px;border:1px solid var(--line);font-size:13px;font-weight:700;background:#fff;color:var(--sub);transition:.15s}
+.chip:hover{border-color:var(--purple)}
+.chip.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+.dialwrap{text-align:center;margin:8px 0 4px}
+.dial{width:190px;height:190px;border-radius:50%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;background:conic-gradient(var(--purple) 0deg, var(--line) 0deg);transition:background .3s}
+.dial .num{font-size:44px;font-weight:800;color:var(--ink)}
+.dial .lab{font-size:13px;color:var(--sub)}
+.dial.prep{background:conic-gradient(var(--green) 0deg, var(--line) 0deg)}
+.dial.warn{background:conic-gradient(var(--orange) 0deg, #ffe9d6 0deg)}
+.dial.done{background:var(--purple)}
+.dial.done .num,.dial.done .lab{color:#fff}
+.status{margin-top:10px;font-size:15px;font-weight:700;text-align:center;min-height:24px}
+.status.prep{color:var(--green)}.status.go{color:var(--purple)}.status.warn{color:var(--orange)}
+.hintbox{background:var(--bg);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--sub);margin-top:14px}
+.hintbox b{color:var(--ink)}
+.btnrow{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.btn.gray{background:#ececf5;color:var(--sub)}
+.btn.gray:hover{background:#e0e0ee}
+.fc{perspective:800px;height:210px;cursor:pointer;margin-bottom:6px}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+.fc-face.back{transform:rotateY(180deg);background:var(--purple-light)}
+.fc-word{font-size:26px;font-weight:800}
+.fc-phon{color:var(--sub);font-size:14px}
+.fc-mean{font-size:15px;color:var(--ink);text-align:center}
+.fc-ex{font-size:13px;color:var(--sub);text-align:center}
+.fc-hint{position:absolute;bottom:10px;font-size:11px;color:#b5b5cc}
+.fcprog{display:flex;gap:16px;justify-content:center;font-size:13px;color:var(--sub);margin-bottom:12px;flex-wrap:wrap}
+.fcprog b{color:var(--ink)}
+.streakbar{display:flex;gap:10px;align-items:center;background:#fff6ec;border:1px solid #ffe1b0;border-radius:14px;padding:12px 16px;font-size:14px;margin-bottom:16px}
+.streakbar .fire{font-size:20px}
+
 footer{text-align:center;color:#a5a5bd;font-size:12.5px;padding:26px 16px 40px}
 .empty{text-align:center;color:var(--sub);padding:60px 0}
 @media(max-width:600px){
@@ -119,6 +162,7 @@ footer{text-align:center;color:#a5a5bd;font-size:12.5px;padding:26px 16px 40px}
   .bubble{max-width:92%}
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 <header>
@@ -126,6 +170,7 @@ footer{text-align:center;color:#a5a5bd;font-size:12.5px;padding:26px 16px 40px}
     <a class="logo" href="#/" target="_self"><span class="mark">S</span>Sylvia 英语复习站</a>
     <a class="nl" href="#/" target="_self" data-nav="home">课程</a>
     <a class="nl" href="#/vocabulary" target="_self" data-nav="vocab">生词本</a>
+    <a class="nl" href="#/train" target="_self" data-nav="train">训练</a>
     <a class="nl" href="#/settings" target="_self" data-nav="settings">声音设置</a>
     <a class="nl" href="https://my.feishu.cn/drive/folder/Quq0fp2TLlTWuGdfNL8cagzSnSX?from=space_personal_filelist" target="_self">📁 课程回放</a>
   </div>
@@ -206,6 +251,64 @@ const LESSONS = [
       { h: "课后作业", type: "homework", text: "1) 每天挑一张照片或身边一件东西(早餐、地铁、工位…),用五感法说 3-5 句话,录下来自己听;2) 背熟本课五感词汇表(尤其 sour / stinky / bitter 这些生疏词);3) 把咖啡描述范文背熟,下节课脱稿复述;4) 下节课继续讲人物、社会类深度话题的描述。(注:后半节课录音缺失,作业按课堂脉络整理,以老师布置为准。)" },
     ]
   },
+  {
+    id: 2,
+    date: "2026-11-12",
+    title: "第 2 课:偏好表达——有理有据说喜好 + 语块与语调",
+    subtitle: "Mike 老师 · 英语口语提升",
+    summary: "课前聊了面试与跳槽想法;计时复习上节咖啡看图说话(60 秒完整版 → 30 秒减法版 → 15 秒精华版,练语块、换顺序、结论收尾);核心学习偏好类话题的四步表达法(观点 → mainly because 理由 → 细节对比 → 让步收尾),反复实战综艺、热闹的地方、空闲旅行、广告与偏好四个话题;最后 10 分钟跟读训练语块连读和 -ly 副词的语调。",
+    tags: ["偏好表达", "mainly because", "prefer A to B", "让步句", "语块训练", "语调"],
+    sections: [
+      { h: "一、课前热身:面试与三年职场", type: "list", items: [
+        "Sylvia 最近去面试了,但在现在的公司待了三年(最长的任职),<b>并不急着跳槽</b>,只是想了解外面的世界。",
+        "表达: <span class='en'>I just want to know more about the outside world.</span>(了解外界机会)",
+        "找工作机会:<span class='en'>search for job opportunities</span>;Mike 评价这是 smart choice。",
+      ]},
+
+      { h: "二、计时复习:咖啡看图说话(60s → 30s → 15s)", type: "list", items: [
+        "<b>60 秒版</b>:上节内容基本全覆盖——拉花、闻起来 strong、喝起来 sweet and a little bitter、每天喝的提神习惯、喜欢的品牌(瑞幸:<span class='en'>Lucky Coffee, it's not expensive</span>)。",
+        "<b>30 秒版(做减法)</b>:拆成三部分规划时间,20 秒开始收尾;只用<b>简单句</b>,不要从句;目标是不卡顿、有节奏,练<b>语块(chunk)</b>——老外说话是一块一块蹦,不是一个词一个词蹦。",
+        "升级要求:开头用 <span class='en'>when / if</span> 造一个从句增加层次;再加 <span class='en'>it makes me feel...</span> 表达感受(万能句,要经常用)。",
+        "Sylvia 30 秒版:<span class='en'>Look at the picture, there is the coffee and there is a beautiful flower picture on it. When I drink the coffee, I think it's so sweet and it can help me to refresh and give me more energy. Do you like drink the coffee?</span>",
+        "<b>15 秒版(精华)</b>:<b>换顺序</b>——可以先说观点再说图;最后一句是<b>结论</b>,要放慢、语调下沉强调,像中文的『总而言之』;老外常说的 <span class='en'>That's what I'm talking about.</span> 就是这种收尾强调。",
+        "Sylvia 15 秒版:<span class='en'>Well, I like the coffee very much and this picture is a cup of coffee. You know, when I drink the coffee, I feel it can give me more energy. You can try the coffee and it tastes so sweet, a little bit.</span>",
+        "自查:计时器看着讲会过早收尾,不看着又不知道讲到哪——说明还在『想到啥说啥』阶段,需要继续堆语料。",
+      ]},
+
+      { h: "三、核心方法:偏好话题四步表达法", type: "list", items: [
+        "① <b>观点</b>:不要只答 yes/no,用 <span class='en'>Well, actually I like...</span> 开头,actually 先给语气缓冲。",
+        "② <b>理由</b>:用 <span class='en'>mainly because</span> 替换 because——because 太绝对,说完大脑就停了;mainly because(主要是因为)更留有余地。",
+        "③ <b>细节 + 对比</b>:<span class='en'>I prefer A to B.</span>(比起 B 更喜欢 A);说出 A 和 B 的 <span class='en'>difference</span>;细节要具体(节目环节、人物 <span class='en'>character</span>)。",
+        "④ <b>让步收尾(显客观)</b>:任何东西都有缺点,用 <span class='en'>although / honestly</span> 补一句反面,<b>although 不与 but 连用</b>。",
+        "全程穿插 <span class='en'>honestly / especially / probably / sort of</span> 等副词调节语气;honestly 自带『我在思考』的停顿感,很好用。",
+      ]},
+
+      { h: "四、话题实战与表达积累", type: "list", items: [
+        "<b>综艺(reality show)</b>:<span class='en'>I prefer Running Man to other shows, mainly because it has many famous actors.</span>让步:看综艺容易上头——<span class='en'>it's easy to get addicted to watching reality shows.</span>(get addicted to doing sth;addicted 是形容词,不能说 it's very addicted to watch)",
+        "<b>热闹的地方(crowded place)</b>:好处要说具体——景点和好吃的店多、人多<b>相对更安全</b>(<span class='en'>relatively speaking</span>)、E 人性格能认识新朋友;新鲜感:<span class='en'>It gives me a sense of newness.</span>(sense + 名词)",
+        "<b>空闲时间做什么</b>:先给好处再说喜欢——<span class='en'>A crowded place makes me have more chances to make new friends, so I like it.</span>原因先行,结论收尾。",
+        "<b>广告会改变偏好吗?</b>:<span class='en'>I don't think so. People have fixed ideas, especially their living habits. But ads can give people more choices and guide them to make different decisions.</span>",
+        "新词现场学:<span class='en'>texture</span> 口感/质感(描述食物用)、<span class='en'>facilitate</span> 促进、<span class='en'>guide sb to do</span> 引导某人做、<span class='en'>show up</span> 出现(<span class='en'>Ads show up around our lives.</span>)。",
+      ]},
+
+      { h: "五、跟读训练:语块连读与副词语调", type: "list", items: [
+        "素材:美妆/生活类 vlog 开头(<span class='en'>Good morning, I am about to head out of my house for work...</span>),语速不快、生活化。",
+        "重点句:<span class='en'>It comes with me on a plane. It comes with me in the car, especially when I'm in a rush to get out of the house to head to work.</span>",
+        "技巧 1:<b>语块拆读</b>——it comes with me / on a plane / in the car 拆开再拼,尤其 especially 后面的长段要成块输出。",
+        "技巧 2:<b>-ly 副词自带上扬语调</b>——honestly / especially / actually 尾音拉长、音调升高,像『边思考边说』,正好治语调太平。",
+        "Sylvia 的语调问题:说话太平、没有起伏(与粤语/普通话的声调习惯有关);每堂课固定花 10 分钟纠音调。",
+      ]},
+
+      { h: "六、老师点评与总结", type: "list", items: [
+        "进步明显:咖啡图能说到 30 秒不卡,mainly because / prefer A to B 当堂就用上了。",
+        "两大短板:<b>because 依赖</b>(说完 because 大脑就停,不会展开)和<b>语调太平</b>。",
+        "熟悉话题能讲很久、陌生话题两句就完——要靠时间堆语料库,计时训练就是量化手段。",
+        "课程串联:第 1 课的感官描述 + 本课偏好表达,知识点越串越多,语料库慢慢成型。",
+      ]},
+
+      { h: "课后作业", type: "homework", text: "1) 把四个话题(综艺/热闹的地方/空闲安排/广告与偏好)按四步法各练一遍 30 秒版本,录音自查;2) 跟读素材练语块,重点模仿 -ly 副词的语调(honestly / especially 拉长扬调);3) 生词复习见生词本(迈克老师次日早上会发课件链接)。" },
+    ]
+  },
 // ★★★ 新课程粘贴在这一行的上方 ★★★
 ];
 
@@ -229,6 +332,25 @@ const WORDS = [
   { w:"efficiency", p:"/ɪˈfɪʃnsi/", m:"n. 效率", e:"Coffee increases my work efficiency.", c:"咖啡提升我的工作效率。" },
   { w:"vibe", p:"/vaɪb/", m:"n. 氛围(口语,= atmosphere)", e:"I just went there to enjoy the vibe.", c:"我只是去感受一下氛围。" },
   { w:"dress up", p:"/dres ʌp/", m:"phr. 扮装;盛装打扮(万圣节 cosplay)", e:"I didn't dress up for the party.", c:"我没有为派对扮装。" },
+  { w:"interview", p:"/ˈɪntəvjuː/", m:"n./v. 面试;采访", e:"I got an interview last week.", c:"我上周参加了一个面试。" },
+  { w:"preference", p:"/ˈprefrəns/", m:"n. 偏好;喜好", e:"Advertisements can change people's preferences.", c:"广告能改变人们的偏好。" },
+  { w:"reality show", p:"/riˈæləti ʃəʊ/", m:"n. 真人秀;综艺节目", e:"I like watching reality shows.", c:"我喜欢看综艺节目。" },
+  { w:"addicted", p:"/əˈdɪktɪd/", m:"adj. 上瘾的;沉迷的(get addicted to doing)", e:"It's easy to get addicted to watching reality shows.", c:"看综艺很容易上头。" },
+  { w:"character", p:"/ˈkærəktə(r)/", m:"n. 人物;角色;性格", e:"Running Man has many famous actors and interesting characters.", c:"《跑男》有很多知名演员和有趣的角色。" },
+  { w:"personality", p:"/ˌpɜːsəˈnæləti/", m:"n. 个性;性格", e:"I am an outgoing person — that's my personality.", c:"我是个外向的人,这就是我的性格。" },
+  { w:"relatively", p:"/ˈrelətɪvli/", m:"adv. 相对地(relatively speaking 相对来说)", e:"Relatively speaking, crowded places are safer.", c:"相对来说,人多的地方更安全。" },
+  { w:"texture", p:"/ˈtekstʃə(r)/", m:"n. 口感;质地", e:"I don't like the texture of rice.", c:"我不喜欢米饭的口感。" },
+  { w:"advertisement", p:"/ədˈvɜːtɪsmənt/", m:"n. 广告", e:"Advertisements show up around our lives.", c:"广告围绕我们的生活出现。" },
+  { w:"fixed", p:"/fɪkst/", m:"adj. 固定的(fixed idea 固有想法)", e:"People have their fixed ideas and habits.", c:"人们有自己固有的想法和习惯。" },
+  { w:"guide", p:"/ɡaɪd/", m:"v. 引导;指导(guide sb to do sth)", e:"Ads can guide people to make different decisions.", c:"广告能引导人们做出不同的决定。" },
+  { w:"facilitate", p:"/fəˈsɪlɪteɪ/", m:"v. 促进;使便利(正式)", e:"Good tools facilitate our work.", c:"好工具能促进我们的工作。" },
+  { w:"judgement", p:"/ˈdʒʌdʒmənt/", m:"n. 判断力;判断(have one's own judgement)", e:"People have their own judgement about ads.", c:"人们对广告有自己的判断。" },
+  { w:"show up", p:"/ʃəʊ ʌp/", m:"phr. 出现;露面", e:"Ads show up around my life.", c:"广告在我的生活中到处出现。" },
+  { w:"a sense of", p:"/ə sens əv/", m:"phr. 一种……的感觉(a sense of newness 新鲜感)", e:"Traveling gives me a sense of newness.", c:"旅行给我一种新鲜感。" },
+  { w:"prefer", p:"/prɪˈfɜː(r)/", m:"v. 更喜欢(prefer A to B 比起B更喜欢A)", e:"I prefer reality shows to movies.", c:"比起电影,我更喜欢综艺。" },
+  { w:"mainly", p:"/ˈmeɪnli/", m:"adv. 主要地(mainly because 主要是因为)", e:"I like it, mainly because it's so funny.", c:"我喜欢它,主要是因为它很好笑。" },
+  { w:"in a rush", p:"/ɪn ə rʌʃ/", m:"phr. 匆忙;赶时间", e:"I'm in a rush to get to work.", c:"我赶着去上班。" },
+// ★★★ 新单词粘贴在这一行的上方 ★★★
 ];
 
 /* 常用口语副词:单独分区展示 */
@@ -325,6 +447,7 @@ function renderHome(){
         '<div class="stat"><b>' + LESSONS.length + '</b>节课</div>' +
         '<div class="stat"><b>' + WORDS.length + '</b>个生词</div>' +
         '<div class="stat"><b>' + ADVERBS.length + '</b>个口语副词</div>' +
+        '<div class="stat"><b>' + getStreak().n + '</b>天打卡</div>' +
         '<div class="stat"><b>🔊</b>点击即发音</div>' +
       '</div>' +
     '</div>' +
@@ -393,6 +516,191 @@ function renderVocab(){
   document.getElementById("vsearch").addEventListener("input", function(e){ draw(e.target.value); });
 }
 
+/* ================= 训练室 ================= */
+const TOPICS = [
+  { t:"描述这杯咖啡:拉花、香味、口感,还有你的喝咖啡习惯", type:"desc" },
+  { t:"描述一张你最喜欢的照片", type:"desc" },
+  { t:"描述你家乡的一道特色菜(试试用 texture 说口感)", type:"desc" },
+  { t:"描述你的办公室或工位", type:"desc" },
+  { t:"你喜欢看综艺节目吗?(说说 Running Man)", type:"pref" },
+  { t:"你喜欢热闹的地方还是安静的地方?", type:"pref" },
+  { t:"空闲时间你最喜欢做什么?", type:"pref" },
+  { t:"描述一种你很喜欢吃的食物(用五感 + texture)", type:"pref" },
+  { t:"广告会轻易改变人们的偏好吗?", type:"pref" },
+  { t:"你喜欢咖啡还是茶?", type:"pref" },
+];
+
+function getStreak(){
+  try{ return JSON.parse(localStorage.getItem("sylviaStreak") || '{"last":"","n":0}'); }
+  catch(e){ return {last:"",n:0}; }
+}
+function todayStr(off){
+  const d = new Date(); if(off){ d.setDate(d.getDate() - off); }
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+
+function renderTrain(){
+  let topic = TOPICS[Math.floor(Math.random()*TOPICS.length)];
+  let dur = 30, prep = 10, phase = "idle", remain = 0, total = 0, prepTotal = 10, cued = false, iv = null;
+
+  app.innerHTML =
+    '<a class="backlink" href="#/" target="_self">← 返回课程列表</a>' +
+    '<div class="sec-title" style="margin-top:0">训练室</div>' +
+    '<div class="streakbar"><span class="fire">🔥</span><span>已连续打卡 <b id="streakN">' + getStreak().n + '</b> 天 · 每天练一组就算数</span></div>' +
+    '<div class="trngrid">' +
+
+      '<div class="tcard"><h3>⏱ 计时口语训练</h3>' +
+        '<div class="topicbox"><span class="typetag desc" id="ttag">五感法</span><span id="topicT"></span></div>' +
+        '<div style="text-align:right;margin-top:8px"><button class="chip" id="newTopic">🎲 换一题</button></div>' +
+        '<div class="chiprow" id="durChips"><span>时长</span><button class="chip on" data-d="30">30 秒</button><button class="chip" data-d="15">15 秒</button><button class="chip" data-d="60">60 秒</button></div>' +
+        '<div class="chiprow" id="prepChips"><span>准备</span><button class="chip on" data-p="10">10 秒</button><button class="chip" data-p="5">5 秒</button><button class="chip" data-p="0">直接开始</button></div>' +
+        '<div class="dialwrap"><div class="dial" id="dial"><div class="num" id="dialN">30</div><div class="lab" id="dialL">准备好了按开始</div></div>' +
+        '<div class="status" id="status"></div></div>' +
+        '<div class="btnrow">' +
+          '<button class="btn" id="startBtn">▶ 开始</button>' +
+          '<button class="btn gray" id="resetBtn">↺ 重来</button>' +
+          '<button class="btn" id="doneBtn" style="display:none">✅ 完成打卡</button>' +
+        '</div>' +
+        '<div class="hintbox" id="hintB"></div>' +
+      '</div>' +
+
+      '<div class="tcard"><h3>🃏 生词闪卡(生词 + 口语副词)</h3>' +
+        '<div class="fcprog"><span>本轮 <b id="fcDone">0</b>/10</span><span>认识 <b id="fcMas">0</b></span><span>还不熟 <b id="fcWeak">0</b></span></div>' +
+        '<div class="fc" id="fc"><div class="fc-inner">' +
+          '<div class="fc-face front"><div class="fc-word" id="fcW"></div><div class="fc-phon" id="fcP"></div><div id="fcSay"></div><div class="fc-hint">点击卡片查看释义</div></div>' +
+          '<div class="fc-face back"><div class="fc-mean" id="fcM"></div><div class="fc-ex" id="fcE"></div></div>' +
+        '</div></div>' +
+        '<div class="btnrow">' +
+          '<button class="btn gray" id="fcKnow">👍 认识</button>' +
+          '<button class="btn" id="fcNo">🔄 还不熟</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+  const el = function(id){ return document.getElementById(id); };
+  const dial = el("dial"), dialN = el("dialN"), dialL = el("dialL"), status = el("status");
+
+  function drawTopic(){
+    topic = TOPICS[Math.floor(Math.random()*TOPICS.length)];
+    el("topicT").textContent = topic.t;
+    const tag = el("ttag");
+    if(topic.type === "desc"){ tag.textContent = "五感法"; tag.className = "typetag desc";
+      el("hintB").innerHTML = "<b>五感法框架(第 1 课):</b>看起来 looks / 闻起来 smells / 尝起来 tastes / 摸起来 feels,挑两三个讲,最后 <b>it makes me feel...</b> 收尾。";
+    } else { tag.textContent = "四步法"; tag.className = "typetag pref";
+      el("hintB").innerHTML = "<b>四步法(第 2 课):</b>① Well, actually I like... ② mainly because... ③ I prefer A to B + 说出 difference ④ although 让步收尾。别忘了 -ly 副词!" ;
+    }
+  }
+  drawTopic();
+
+  function paint(frac){
+    const deg = Math.round(frac * 360);
+    const col = phase === "prep" ? "var(--green)" : (phase === "warn" ? "var(--orange)" : "var(--purple)");
+    dial.style.background = "conic-gradient(" + col + " " + deg + "deg, var(--line) " + deg + "deg)";
+  }
+  function stop(){ if(iv){ clearInterval(iv); iv = null; } }
+  function reset(){
+    stop(); phase = "idle"; cued = false;
+    dial.className = "dial"; dialN.textContent = dur; dialL.textContent = "准备好了按开始";
+    status.textContent = ""; status.className = "status";
+    paint(0); el("doneBtn").style.display = "none"; el("startBtn").disabled = false;
+  }
+  function startRun(){
+    phase = "run"; remain = dur; total = dur; cued = false;
+    dial.className = "dial"; dialN.textContent = dur; dialL.textContent = "正在计时";
+    status.className = "status go"; status.textContent = "开始说!";
+  }
+  function tick(){
+    remain--;
+    if(phase === "prep"){
+      if(remain <= 0){ startRun(); paint(0); return; }
+      dialN.textContent = remain; paint((prepTotal - remain) / prepTotal); return;
+    }
+    if(remain <= 0){
+      stop(); phase = "done"; dial.className = "dial done";
+      dialN.textContent = "✓"; dialL.textContent = "时间到";
+      status.className = "status"; status.textContent = "练完一组啦,点「完成打卡」记录今天!";
+      el("doneBtn").style.display = ""; return;
+    }
+    dialN.textContent = remain;
+    if(!cued && remain === Math.ceil(dur / 3)){ cued = true; status.textContent = "快到点了,准备收尾!"; }
+    if(remain <= 5){
+      if(phase !== "warn"){ phase = "warn"; dial.className = "dial warn"; }
+      status.className = "status warn"; status.textContent = "快收尾!";
+    }
+    paint((total - remain) / total);
+  }
+
+  el("startBtn").addEventListener("click", function(){
+    if(phase !== "idle"){ return; }
+    reset(); phase = "prep"; prepTotal = prep; remain = prep;
+    dial.className = "dial prep"; dialL.textContent = "准备"; dialN.textContent = prep;
+    status.className = "status prep"; status.textContent = "想好框架再开口";
+    el("startBtn").disabled = true;
+    iv = setInterval(tick, 1000);
+  });
+  el("resetBtn").addEventListener("click", reset);
+  el("newTopic").addEventListener("click", drawTopic);
+  el("durChips").addEventListener("click", function(e){
+    const b = e.target.closest ? e.target.closest(".chip[data-d]") : null;
+    if(!b){ return; }
+    dur = parseInt(b.getAttribute("data-d"), 10);
+    this.querySelectorAll(".chip").forEach(function(c){ c.classList.toggle("on", c === b); });
+    if(phase === "idle"){ dialN.textContent = dur; }
+  });
+  el("prepChips").addEventListener("click", function(e){
+    const b = e.target.closest ? e.target.closest(".chip[data-p]") : null;
+    if(!b){ return; }
+    prep = parseInt(b.getAttribute("data-p"), 10);
+    this.querySelectorAll(".chip").forEach(function(c){ c.classList.toggle("on", c === b); });
+  });
+  el("doneBtn").addEventListener("click", function(){
+    const st = getStreak(); const t = todayStr();
+    if(st.last !== t){ st.n = (st.last === todayStr(1)) ? st.n + 1 : 1; st.last = t;
+      localStorage.setItem("sylviaStreak", JSON.stringify(st)); }
+    status.textContent = "已打卡 🔥 连续 " + st.n + " 天";
+    el("streakN").textContent = st.n;
+  });
+
+  /* ---- 生词闪卡 ---- */
+  const pool = WORDS.concat(ADVERBS);
+  let mastered = new Set(JSON.parse(localStorage.getItem("sylviaMastered") || "[]"));
+  let queue = [], cur = null, fDone = 0, fWeak = 0, fMas = 0;
+  function shuffle(a){ a = a.slice(); for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function drawCard(){
+    el("fc").classList.remove("flip");
+    if(!queue.length){
+      if(fDone === 0){ queue = shuffle(pool).slice(0, 10); }
+      else {
+        el("fcW").textContent = "🎉 本轮完成!";
+        el("fcP").textContent = ""; el("fcSay").innerHTML = "";
+        el("fcM").textContent = "认识 " + fMas + " 个 / 还不熟 " + fWeak + " 个";
+        el("fcE").textContent = "生词本里多看看标记为「还不熟」的词,明天再来一轮!";
+        return;
+      }
+    }
+    cur = queue.shift();
+    el("fcW").textContent = cur.w; el("fcP").textContent = cur.p;
+    el("fcSay").innerHTML = sayBtn(cur.w);
+    el("fcM").textContent = cur.m; el("fcE").textContent = cur.e + " —— " + cur.c;
+  }
+  function mark(know){
+    if(!cur){ return; }
+    fDone++; el("fcDone").textContent = fDone;
+    if(know){ fMas++; mastered.add(cur.w); cur = null; }
+    else {
+      fWeak++; cur._rq = (cur._rq || 0) + 1;
+      if(cur._rq < 2){ queue.push(cur); } cur = null;
+    }
+    el("fcMas").textContent = fMas; el("fcWeak").textContent = fWeak;
+    localStorage.setItem("sylviaMastered", JSON.stringify(Array.from(mastered)));
+    drawCard();
+  }
+  el("fc").addEventListener("click", function(){ el("fc").classList.toggle("flip"); });
+  el("fcKnow").addEventListener("click", function(){ mark(true); });
+  el("fcNo").addEventListener("click", function(){ mark(false); });
+  drawCard();
+}
+
 function renderSettings(){
   const options = VOICES.map(function(v){
     const mark = FEMALE_RE.test(v.name) ? " 💃" : "";
@@ -426,6 +734,7 @@ function route(){
   document.querySelectorAll(".nl").forEach(a => a.classList.remove("on"));
   const m = h.match(/#\/lesson\/(\d+)/);
   if(m){ renderLesson(parseInt(m[1], 10)); document.querySelector('[data-nav="home"]').classList.add("on"); }
+  else if(h.indexOf("#/train") === 0){ renderTrain(); document.querySelector('[data-nav="train"]').classList.add("on"); }
   else if(h.indexOf("#/vocab") === 0){ renderVocab(); document.querySelector('[data-nav="vocab"]').classList.add("on"); }
   else if(h.indexOf("#/settings") === 0){ renderSettings(); document.querySelector('[data-nav="settings"]').classList.add("on"); }
   else { renderHome(); document.querySelector('[data-nav="home"]').classList.add("on"); }
