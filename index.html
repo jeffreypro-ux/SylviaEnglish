@@ -120,6 +120,7 @@ main{max-width:960px;margin:0 auto;padding:26px 16px 70px}
 .typetag{flex:none;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px}
 .typetag.desc{background:#e6f4ec;color:var(--green)}
 .typetag.pref{background:#fff0e6;color:var(--orange)}
+.typetag.story{background:#e8f0fe;color:#3b6fd4}
 .chiprow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0;font-size:13px;color:var(--sub)}
 .chip{padding:7px 15px;border-radius:99px;border:1px solid var(--line);font-size:13px;font-weight:700;background:#fff;color:var(--sub);transition:.15s}
 .chip:hover{border-color:var(--purple)}
@@ -331,6 +332,76 @@ const LESSONS = [
       { h: "课后作业", type: "homework", text: "1) 把四个话题(综艺/热闹的地方/空闲安排/广告与偏好)按四步法各练一遍 30 秒版本,录音自查;2) 跟读素材练语块,重点模仿 -ly 副词的语调(honestly / especially 拉长扬调);3) 生词复习见生词本(迈克老师次日早上会发课件链接)。" },
     ]
   },
+  {
+    id: 3,
+    date: "2026-11-17",
+    title: "第 3 课:叙事五步法 + 跟读改句训练",
+    subtitle: "Mike 老师 · 英语口语提升",
+    summary: "课前聊加班和广州堵车;复习 A/B 选择与副词,用四五句+副词描述近况(结尾公式:感受+解决方案);跟读 LinkedIn 视频练语块节奏,学会把 You know the feeling of... / Whether you like it or not 改句套进自己的场景;核心学习叙事五步法(背景→冲突→解决→情绪变化→收尾),用难忘的日本旅行实战。",
+    tags: ["叙事五步法", "副词收尾", "跟读改句", "when it comes to", "开场白"],
+    models: [
+      { t: "难忘的日本旅行 · 叙事范文",
+        cn: "结构:背景(Last year...with my friend)→ 冲突(initially 下大雪 / surprisingly 火车故障 / stuck 被困)→ 解决(luckily 免单)→ 第二冲突+行动(奈良小鹿弄脏衣服 → luckily 拍到美照)→ That's why 收尾",
+        en: "Last year I went to Japan with my friend, and it was an unforgettable trip. Initially, I didn't know it would snow so heavily. Surprisingly, the train had some trouble because of the snow, and we were stuck on it for a whole night. Luckily, we didn't need to pay for the tickets again. We also went to Nara Park — the deer were so cute, but their feet made my clothes so dirty. Luckily, I took some beautiful photos with them. That's why I think this trip is so unforgettable, and I will definitely go to Japan again." },
+      { t: "工作汇报自我介绍 · 课堂句型串讲",
+        cn: "句型:actually 开头 → especially when it comes to → whether you like it or not → anyway 收尾",
+        en: "Well, actually, my presentation went quite fluently, especially when it comes to data explanation — I am so confident about that. Honestly, before every presentation I have to prepare reports and PowerPoint, sometimes working overtime until ten o'clock. Whether you like it or not, we all need to finish the job. Anyway, I will keep doing it, because practice makes perfect." },
+    ],
+    sections: [
+      { h: "一、课前热身:加班与堵车", type: "list", items: [
+        "Sylvia 今天加班(overtime)又遇上堵车(traffic jam)——广州地铁再晚都人多:so many people and so many cars。",
+        "复习上节:回答 A/B 选择类问题 + 副词 <span class='en'>actually / honestly / especially</span>。",
+      ]},
+
+      { h: "二、四五句描述近况:副词要用,结尾要收", type: "list", items: [
+        "任务:用副词形容最近几天,四五句就好。",
+        "Sylvia 输出(大意):honestly 最近很忙,尤其是工作;常做 presentation、做 PPT、还要见客户。",
+        "Mike 点评:前面都好,<b>结尾普通了</b>——结尾公式:<b>感受 + 解决方案</b>。<span class='en'>I feel so tired, I just want to go to bed... Anyway, I keep doing this.</span>",
+        "收尾副词三件套:<span class='en'>eventually</span> 最终、<span class='en'>anyway</span> 不管怎样(突然收尾很自然)、<span class='en'>seriously</span> 说真的(疑问/强调两用)。",
+        "Sylvia 反馈:每句都要先在脑子里翻中文——Mike:正常,要多开口;建议找<b>语伴</b>(HelloTalk 认识外国朋友,或小红书找口语搭子,水平要略高于自己);纯上课没有输出环境,学了用不上就没效益。",
+      ]},
+
+      { h: "三、描述你的 presentation", type: "list", items: [
+        "正确说法:my presentation <b>went fluently</b>(went + 副词)或 was fluent;说 <span class='en'>is fluently</span> 是错的。",
+        "万能句型:<span class='en'>especially when it comes to data explanation</span>(当谈到数据讲解)→ <span class='en'>I am so confident about that.</span>",
+        "动词 <span class='en'>explain</span> → 名词 <span class='en'>explanation</span> /ˌekspləˈneɪʃn/,记住后形成肌肉记忆。",
+      ]},
+
+      { h: "四、跟读与改句:把别人的句子变成自己的", type: "list", items: [
+        "素材:LinkedIn 个人档案视频(职场相关),练开头节奏。",
+        "原句:<span class='en'>You know that feeling of finally getting something right on social media, and then the platform changes something and you have to learn all new rules.</span>",
+        "停顿策略:<span class='en'>You know that feeling of...</span> 后面<b>停一拍</b>,为后面加速做铺垫;have 等助动词弱读轻带,不要逐词重读。",
+        "连读:<span class='en'>whether you like it or not</span> 中 like it 连读,三四个词一个语块蹦出来。",
+        "<b>改句练习(重点)</b>:保留句型、换掉内容——<span class='en'>You know the feeling of getting customers on social media?</span>(在社媒上获客是什么感觉?)直接变成自己 presentation 的开场白钩子。",
+        "万能句仿写:<span class='en'>Whether you like it or not, you need to finish the job.</span>(不管喜不喜欢,活都得干完)→ 换后半句造你自己的版本。",
+        "开场白示例:<span class='en'>You know the feeling of having overtime till ten o'clock? That is me.</span>(加班到十点的滋味你知道吗?这就是我)——一下抓住听众。",
+      ]},
+
+      { h: "五、核心方法:叙事五步法", type: "list", items: [
+        "结构:<b>背景 → 冲突 → 行动/解决 → 情绪变化 → 收尾</b>,每步两三句,一分钟内流利讲完。",
+        "背景:时间、地点、人物——英语<b>先说时间</b>:<span class='en'>Last year I went to Japan with my friend.</span>",
+        "冲突:像电影开头要抓人,先抛意外——<b>没有意外,也是一种意外</b>,任何旅行都有故事。",
+        "叙事连接器(本课新副词):<span class='en'>initially</span> 起初、<span class='en'>surprisingly</span> 出人意料地、<span class='en'>luckily</span> 幸运的是、<span class='en'>gradually</span> 渐渐地、<span class='en'>firstly / secondly</span> 首先其次、收尾用 <span class='en'>That's why...</span> 这就是为什么。",
+        "收尾:学到什么 + 感受(<span class='en'>I will definitely go there again.</span>)。",
+      ]},
+
+      { h: "六、实战:Describe an unforgettable trip", type: "list", items: [
+        "Sylvia 第一版(日本:安静放松、冬天美、烤肉 roast beef、会再去)——自评 4.5 分,『像小学生聊天』。",
+        "Mike:这不是英语问题,是<b>内容和语文水平</b>;老外被问同样的问题也这么说——先把流利度练出来就能被接受。日本烤肉直接说 <span class='en'>Japanese barbecue</span>。",
+        "提分关键:挑一个具体景点,用第 1 课的<b>五感</b>描述风景,再加冲突和转折。",
+        "语法纠正:<b>Japan 前面不加 the</b>(她说成了 the Japan);『被困』用 <span class='en'>be stuck on the train</span>。",
+        "课堂成稿:大雪被困火车(initially / surprisingly / luckily)+ 奈良小鹿弄脏衣服(luckily 拍到美照)双冲突版——全文见「范文」页。",
+      ]},
+
+      { h: "七、老师点评与运用", type: "list", items: [
+        "叙事法不止讲故事:做 presentation 也是叙事——<b>开场先抛客户痛点/常见问题</b>抓住注意力,再给解决方案,话术套路同理。",
+        "课程串联:第 1 课五感 + 第 2 课偏好四步 + 本课叙事五步,知识越串越多,语料库成型中。",
+        "节奏:最近工作忙,课程顺延,下周继续。",
+      ]},
+
+      { h: "课后作业", type: "homework", text: "1) 背熟「范文」页的日本旅行叙事,脱稿按五步法说一遍;2) 用叙事五步法给自己的 presentation 写一个 30 秒开场白(先抛客户痛点);3) 复习生词本新词;4) 有空在 HelloTalk 或小红书找找语伴,先有输出环境。" },
+    ]
+  },
 // ★★★ 新课程粘贴在这一行的上方 ★★★
 ];
 
@@ -372,6 +443,26 @@ const WORDS = [
   { w:"prefer", p:"/prɪˈfɜː(r)/", m:"v. 更喜欢(prefer A to B 比起B更喜欢A)", e:"I prefer reality shows to movies.", c:"比起电影,我更喜欢综艺。" },
   { w:"mainly", p:"/ˈmeɪnli/", m:"adv. 主要地(mainly because 主要是因为)", e:"I like it, mainly because it's so funny.", c:"我喜欢它,主要是因为它很好笑。" },
   { w:"in a rush", p:"/ɪn ə rʌʃ/", m:"phr. 匆忙;赶时间", e:"I'm in a rush to get to work.", c:"我赶着去上班。" },
+  { w:"overtime", p:"/ˈəʊvətaɪm/", m:"n. 加班(have overtime / work overtime)", e:"I have overtime again today.", c:"我今天又加班。" },
+  { w:"traffic jam", p:"/ˈtræfɪk dʒæm/", m:"n. 堵车;交通堵塞", e:"I was late because of the traffic jam.", c:"因为堵车我迟到了。" },
+  { w:"presentation", p:"/ˌpreznˈteɪʃn/", m:"n. 演讲;工作汇报(give a presentation)", e:"I gave a presentation to my clients.", c:"我给客户做了一场汇报。" },
+  { w:"client", p:"/ˈklaɪənt/", m:"n. 客户(≈ customer)", e:"I need to meet my clients this afternoon.", c:"我今天下午要见客户。" },
+  { w:"confident", p:"/ˈkɒnfɪdənt/", m:"adj. 自信的(be confident about)", e:"I am so confident about data explanation.", c:"我对数据讲解很有自信。" },
+  { w:"when it comes to", p:"/wen ɪt kʌmz tuː/", m:"phr. 当谈到;当涉及到", e:"Especially when it comes to data.", c:"尤其是谈到数据的时候。" },
+  { w:"explanation", p:"/ˌekspləˈneɪʃn/", m:"n. 解释;说明(explain v.)", e:"My explanation of the data was clear.", c:"我对数据的讲解很清楚。" },
+  { w:"networking", p:"/ˈnetwɜːkɪŋ/", m:"n. 人脉拓展;社交(a networking tool 社交工具)", e:"LinkedIn is a powerful networking tool.", c:"领英是一个强大的职场社交工具。" },
+  { w:"employee", p:"/ɪmˈplɔɪiː/", m:"n. 雇员;员工(employer 雇主)", e:"Whether you're an employee or a freelancer.", c:"无论你是雇员还是自由职业者。" },
+  { w:"freelancer", p:"/ˈfriːlɑːnsə(r)/", m:"n. 自由职业者", e:"She works as a freelancer.", c:"她做自由职业。" },
+  { w:"opening line", p:"/ˈəʊpnɪŋ laɪn/", m:"n. 开场白", e:"You know the feeling of... is a great opening line.", c:"『你知道那种……感觉吗』是很好的开场白。" },
+  { w:"unforgettable", p:"/ˌʌnfəˈɡetəbl/", m:"adj. 难忘的", e:"It was an unforgettable trip.", c:"那是一次难忘的旅行。" },
+  { w:"narrative", p:"/ˈnærətɪv/", m:"n. 叙事;讲故事", e:"Narrative skill matters in presentations too.", c:"叙事能力在汇报中同样重要。" },
+  { w:"conflict", p:"/ˈkɒnflɪkt/", m:"n. 冲突;(故事里的)意外", e:"Every good story needs a conflict.", c:"每个好故事都需要一个冲突。" },
+  { w:"initially", p:"/ɪˈnɪʃəli/", m:"adv. 起初;一开始(≈ at first,更地道)", e:"Initially, I didn't know it would snow.", c:"起初,我不知道会下雪。" },
+  { w:"surprisingly", p:"/səˈpraɪzɪŋli/", m:"adv. 出人意料地", e:"Surprisingly, the train had some trouble.", c:"出人意料的是,火车出了故障。" },
+  { w:"luckily", p:"/ˈlʌkɪli/", m:"adv. 幸运的是", e:"Luckily, we didn't need to pay again.", c:"幸运的是,我们不用再付一次钱。" },
+  { w:"gradually", p:"/ˈɡrædʒuəli/", m:"adv. 渐渐地;逐步地", e:"Gradually, I got used to it.", c:"渐渐地,我习惯了。" },
+  { w:"that's why", p:"/ðæts waɪ/", m:"phr. 这就是为什么……(叙事收尾)", e:"That's why I think this trip is unforgettable.", c:"这就是为什么我觉得这次旅行难忘。" },
+  { w:"whether you like it or not", p:"/ˌweðə juː ˈlaɪk ɪt ɔː ˈnɒt/", m:"phr. 不管你喜欢与否", e:"Whether you like it or not, you need to finish the job.", c:"不管喜不喜欢,你都得把活干完。" },
 // ★★★ 新单词粘贴在这一行的上方 ★★★
 ];
 
@@ -550,6 +641,9 @@ const TOPICS = [
   { t:"描述一种你很喜欢吃的食物(用五感 + texture)", type:"pref" },
   { t:"广告会轻易改变人们的偏好吗?", type:"pref" },
   { t:"你喜欢咖啡还是茶?", type:"pref" },
+  { t:"描述一次难忘的旅行(用叙事五步法)", type:"story" },
+  { t:"介绍你最近做过的一场工作汇报(when it comes to...)", type:"pref" },
+  { t:"用 You know the feeling of... 开头介绍你的日常工作", type:"pref" },
 ];
 
 function getStreak(){
@@ -608,6 +702,8 @@ function renderTrain(){
     const tag = el("ttag");
     if(topic.type === "desc"){ tag.textContent = "五感法"; tag.className = "typetag desc";
       el("hintB").innerHTML = "<b>五感法框架(第 1 课):</b>看起来 looks / 闻起来 smells / 尝起来 tastes / 摸起来 feels,挑两三个讲,最后 <b>it makes me feel...</b> 收尾。";
+    } else if(topic.type === "story"){ tag.textContent = "叙事法"; tag.className = "typetag story";
+      el("hintB").innerHTML = "<b>叙事五步法(第 3 课):</b>背景先说时间(Last year I went to...)→ 冲突(initially / surprisingly)→ 解决(luckily)→ 情绪变化 → That's why... 收尾。";
     } else { tag.textContent = "四步法"; tag.className = "typetag pref";
       el("hintB").innerHTML = "<b>四步法(第 2 课):</b>① Well, actually I like... ② mainly because... ③ I prefer A to B + 说出 difference ④ although 让步收尾。别忘了 -ly 副词!" ;
     }
